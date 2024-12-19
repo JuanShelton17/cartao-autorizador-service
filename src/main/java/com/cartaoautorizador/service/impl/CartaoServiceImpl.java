@@ -54,14 +54,14 @@ public class CartaoServiceImpl implements CartaoService {
     }
 
     @Override
-    public NovoCartao obterDadosCartao(String numeroCartao) {
+    public NovoCartao obterDadosCartao(String numeroCartao)  {
         Cartao cartao = cartaoRepository.findById(numeroCartao)
                 .orElseThrow(() ->  new CartaoException(HttpStatus.NOT_FOUND, messageSource.getMessage(ERROR_CARTAO_INEXISTENTE, null, Locale.getDefault())));
         return toNovoCartao(cartao);
     }
 
     @Override
-    public CartaoDTO atualizarDadosCartao(NovoCartao novoCartao) {
+    public CartaoDTO atualizarDadosCartao(NovoCartao novoCartao)  {
         var cartao = toCartao(novoCartao);
 
         Query query = new Query();

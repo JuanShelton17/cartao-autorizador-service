@@ -1,5 +1,6 @@
 package com.cartaoautorizador.service;
 
+import com.cartaoautorizador.exception.CartaoException;
 import com.coteweb.cotewebApi.model.CartaoDTO;
 import com.coteweb.cotewebApi.model.NovoCartao;
 
