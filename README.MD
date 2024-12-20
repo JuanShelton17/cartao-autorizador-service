@@ -6,10 +6,11 @@ Este repositório contém a implementação de dois microserviços: **Cartões**
 
 ### **Microserviço Cartões**
 Este serviço gerencia a criação de cartões, consulta de saldo e armazenamento de dados no banco MongoDB.
+https://github.com/JuanShelton17/cartao-autorizador-service
 
 ### **Microserviço Transações**
 Este serviço processa as transações enviadas pelos usuários, validando a existência do cartão, a senha e o saldo disponível. Caso a transação seja autorizada, o saldo do cartão é atualizado e a transação é registrada.
-
+https://github.com/JuanShelton17/transacao-autorizador-service
 ---
 
 ## Arquitetura
