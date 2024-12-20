@@ -1,0 +1,118 @@
+openapi: 3.0.1
+info:
+  title: Cartão Service API
+  version: 1.0.0
+  description: API para gerenciar cartões
+paths:
+  /cartoes:
+    post:
+      tags:
+        - Cartao Service
+      summary: Criar um novo cartão
+      operationId: criarCartao
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NovoCartao'
+      responses:
+        '201':
+          description: Cartão criado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartaoDTO'
+        '422':
+          description: Cartão já existe
+    put:
+      tags:
+        - Cartao Service
+      summary: Atualizar dados do cartão
+      operationId: atualizarDadosCartao
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NovoCartao'
+      responses:
+        '200':
+          description: Dados do cartão
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartaoDTO'
+        '404':
+          description: Not Found
+        '500':
+          description: Erro Inesperado
+
+  /cartoes/{numeroCartao}:
+    get:
+      tags:
+        - Cartao Service
+      summary: Obter saldo do cartão
+      operationId: obterSaldo
+      parameters:
+        - name: numeroCartao
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Saldo do cartão
+          content:
+            application/json:
+              schema:
+                type: number
+                format: double
+        '404':
+          description: Cartão inexistente
+
+
+  /cartoes/dados/{numeroCartao}:
+    get:
+      tags:
+        - Cartao Service
+      summary: Obter dados do cartão
+      operationId: obterDadosCartao
+      parameters:
+        - name: numeroCartao
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Dados do cartão
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NovoCartao'
+        '404':
+          description: Cartão inexistente
+components:
+  schemas:
+    NovoCartao:
+      type: object
+      required:
+        - numeroCartao
+        - senha
+      properties:
+        numeroCartao:
+          type: string
+        senha:
+          type: string
+        saldo:
+          type: number
+          format: double
+    CartaoDTO:
+      type: object
+      properties:
+        numeroCartao:
+          type: string
+        saldo:
+          type: number
+          format: double
